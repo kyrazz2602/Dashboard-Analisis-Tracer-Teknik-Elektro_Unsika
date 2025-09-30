@@ -28,4 +28,7 @@ logs/
 # VSCode
 .vscode/
 
+# Dataset (CSV)
+Dataset - unsika_tracer_alumni_teknik_elektro.csv
+
 
