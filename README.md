@@ -19,7 +19,7 @@ Selamat datang! Repo ini berisi aplikasi dashboard interaktif berbasis Streamlit
 
 ### 🗂️ Struktur Proyek
 - `analisis_tracer_alumni_teknik_elektro_unsika.py` — aplikasi Streamlit utama
-- `Dataset - unsika_tracer_alumni_teknik_elektro.csv` — dataset tracer alumni (hanya lokal)
+- `Dataset - unsika_tracer_alumni_teknik_elektro.csv` — dataset tracer alumni 
 - `requirements.txt` — dependensi Python
 - `README.md` — dokumentasi proyek
 
@@ -51,18 +51,6 @@ streamlit run analisis_tracer_alumni_teknik_elektro_unsika.py
 - Lokasi dataset diatur melalui konstanta `DATASET_PATH` di dalam `analisis_tracer_alumni_teknik_elektro_unsika.py`.
 - Pastikan file dataset `Dataset - unsika_tracer_alumni_teknik_elektro.csv` berada di folder yang sama dengan script.
 - File CSV sudah dimasukkan ke `.gitignore`, sehingga tidak akan ter-push ke GitHub.
-
----
-
-### 🔒 Privasi Data & .gitignore
-- File dataset CSV berisi data sensitif dan telah ditambahkan ke `.gitignore` agar tidak diunggah ke repository publik.
-- Untuk menjalankan aplikasi, letakkan file `Dataset - unsika_tracer_alumni_teknik_elektro.csv` di root folder proyek (sejajar dengan `analisis_tracer_alumni_teknik_elektro_unsika.py`).
-- Jika file terlanjur ter-track, jalankan perintah berikut agar dihapus dari indeks git (tetap ada di disk):
-```powershell
-git rm --cached "Dataset - unsika_tracer_alumni_teknik_elektro.csv"
-git add .gitignore
-git commit -m "Ignore dataset CSV dari repository"
-```
 
 ---
 
