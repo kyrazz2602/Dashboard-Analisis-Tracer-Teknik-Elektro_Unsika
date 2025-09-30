@@ -3,7 +3,7 @@
 Selamat datang! Repo ini berisi aplikasi dashboard interaktif berbasis Streamlit untuk menganalisis data tracer study alumni Teknik Elektro UNSIKA. Aplikasi menampilkan pembersihan data, statistik deskriptif, visualisasi, perbandingan, hingga rekomendasi berbasis data. ✨
 
 - **Framework**: `Streamlit`
-- **Data**: `Dataset - unsika_tracer_alumni_teknik_elektro.csv` (tidak di-commit; di-ignore oleh git)
+- **Data**: `Dataset - unsika_tracer_alumni_teknik_elektro.csv` 
 - **Script utama**: `analisis_tracer_alumni_teknik_elektro_unsika.py`
 
 ---
@@ -81,74 +81,3 @@ Gunakan untuk keperluan akademik/pembelajaran. Cantumkan atribusi bila disebarlu
 
 ### 🙏 Kredit
 Program Studi Teknik Elektro UNSIKA dan kontributor yang berpartisipasi dalam pengembangan dashboard ini. 💙
-
----
-
-### ⬆️ Publikasi ke GitHub (Windows / PowerShell)
-Ikuti langkah berikut untuk mem-publish proyek ini ke GitHub.
-
-1) Buat repo kosong di GitHub
-- Masuk ke GitHub dan buat repository baru (tanpa README/License agar tidak konflik).
-
-2) Inisialisasi git di folder proyek
-```powershell
-cd "C:\Users\LENOVO\Downloads\Dashboard Analisis Tracer Alumni Teknik Elektro Unsika"
-git init
-```
-
-3) Atur identitas git (sekali saja di mesin ini)
-```powershell
-git config --global user.name "Nama Anda"
-git config --global user.email "email@anda.com"
-```
-
-4) Tambahkan remote ke repo GitHub Anda
-Ganti URL di bawah dengan URL repo Anda (HTTPS disarankan):
-```powershell
-git remote add origin https://github.com/USERNAME/NAMA-REPO.git
-```
-
-5) Tambahkan semua file dan commit
-```powershell
-git add .
-git commit -m "Inisialisasi proyek: dashboard tracer alumni"
-```
-
-6) Ganti nama branch (opsional, jika repo GitHub default `main`)
-```powershell
-git branch -M main
-```
-
-7) Push ke GitHub
-```powershell
-git push -u origin main
-```
-
-8) Update berikutnya
-```powershell
-git add .
-git commit -m "Perbarui fitur/README/dll"
-git push
-```
-
-Tips:
-- Pastikan `.gitignore` sudah benar agar file lokal (venv, cache) tidak ikut ter-push.
-- Jika diminta login, gunakan GitHub credentials atau Personal Access Token.
-
-
-### Troubleshooting (Windows/PowerShell)
-- Perintah tidak dikenali: pastikan Python & pip sudah ada di PATH. Coba: `python --version` dan `pip --version`.
-- Streamlit tidak terpasang: jalankan `pip install streamlit`.
-- Konflik paket: gunakan environment terpisah.
-  ```bash
-  python -m venv .venv
-  .\.venv\Scripts\activate
-  pip install -U pip
-  pip install streamlit pandas numpy matplotlib
-  ```
-- Port 8501 sudah terpakai: jalankan dengan port lain, contoh `streamlit run analisis_tracer_alumni_teknik_elektro_unsika.py --server.port 8502`.
-- Perubahan kode tidak terlihat: bersihkan cache `streamlit cache clear` lalu jalankan ulang.
-
-
-
-
