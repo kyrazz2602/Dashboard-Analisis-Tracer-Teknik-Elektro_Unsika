@@ -3,7 +3,7 @@
 Selamat datang! Repo ini berisi aplikasi dashboard interaktif berbasis Streamlit untuk menganalisis data tracer study alumni Teknik Elektro UNSIKA. Aplikasi menampilkan pembersihan data, statistik deskriptif, visualisasi, perbandingan, hingga rekomendasi berbasis data. ✨
 
 - **Framework**: `Streamlit`
-- **Data**: `Dataset - unsika_tracer_alumni_teknik_elektro.csv`
+- **Data**: `Dataset - unsika_tracer_alumni_teknik_elektro.csv` (tidak di-commit; di-ignore oleh git)
 - **Script utama**: `analisis_tracer_alumni_teknik_elektro_unsika.py`
 
 ---
@@ -19,7 +19,7 @@ Selamat datang! Repo ini berisi aplikasi dashboard interaktif berbasis Streamlit
 
 ### 🗂️ Struktur Proyek
 - `analisis_tracer_alumni_teknik_elektro_unsika.py` — aplikasi Streamlit utama
-- `Dataset - unsika_tracer_alumni_teknik_elektro.csv` — dataset tracer alumni
+- `Dataset - unsika_tracer_alumni_teknik_elektro.csv` — dataset tracer alumni (hanya lokal)
 - `requirements.txt` — dependensi Python
 - `README.md` — dokumentasi proyek
 
@@ -50,6 +50,19 @@ streamlit run analisis_tracer_alumni_teknik_elektro_unsika.py
 ### 🧰 Konfigurasi
 - Lokasi dataset diatur melalui konstanta `DATASET_PATH` di dalam `analisis_tracer_alumni_teknik_elektro_unsika.py`.
 - Pastikan file dataset `Dataset - unsika_tracer_alumni_teknik_elektro.csv` berada di folder yang sama dengan script.
+- File CSV sudah dimasukkan ke `.gitignore`, sehingga tidak akan ter-push ke GitHub.
+
+---
+
+### 🔒 Privasi Data & .gitignore
+- File dataset CSV berisi data sensitif dan telah ditambahkan ke `.gitignore` agar tidak diunggah ke repository publik.
+- Untuk menjalankan aplikasi, letakkan file `Dataset - unsika_tracer_alumni_teknik_elektro.csv` di root folder proyek (sejajar dengan `analisis_tracer_alumni_teknik_elektro_unsika.py`).
+- Jika file terlanjur ter-track, jalankan perintah berikut agar dihapus dari indeks git (tetap ada di disk):
+```powershell
+git rm --cached "Dataset - unsika_tracer_alumni_teknik_elektro.csv"
+git add .gitignore
+git commit -m "Ignore dataset CSV dari repository"
+```
 
 ---
 
@@ -58,13 +71,6 @@ Aplikasi melakukan:
 - Penghapusan duplikat baris.
 - Menghapus baris dengan missing value pada kolom kunci (`ttfj_bulan`, `gaji_awal_idr`).
 - Menjaga nilai wajar dengan winsorization (persentil 5–95) pada `gaji_awal_idr` untuk responden bekerja/wirausaha.
-
----
-
-### ❓ Troubleshooting
-- ❗ "File tidak ditemukan": pastikan nama dan lokasi dataset sesuai `DATASET_PATH`.
-- ❗ Error izin PowerShell saat aktivasi venv: jalankan PowerShell sebagai Administrator atau jalankan `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` lalu aktivasi ulang.
-- ❗ Port 8501 sudah terpakai: jalankan `streamlit run analisis_tracer_alumni_teknik_elektro_unsika.py --server.port 8502`.
 
 ---
 
@@ -145,9 +151,9 @@ Dashboard interaktif berbasis Streamlit untuk menganalisis data tracer study alu
 ### Struktur Proyek
 ```
 Dashboard Analisis Tracer Alumni Teknik Elektro Unsika/
-├─ app.py                                      # Versi app modular (layanan data/analitik/visual)
-├─ analisis_tracer_alumni_teknik_elektro_unsika.py  # Versi app berbasis kelas tunggal
-├─ Dataset - unsika_tracer_alumni_teknik_elektro.csv # Dataset contoh (CSV)
+├─ analisis_tracer_alumni_teknik_elektro_unsika.py
+├─ Dataset - unsika_tracer_alumni_teknik_elektro.csv   # hanya lokal, gitignored
+├─ requirements.txt
 └─ README.md
 ```
 
@@ -167,10 +173,8 @@ pip install streamlit pandas numpy matplotlib
 Pastikan file dataset berada di root proyek dengan nama persis:
 `Dataset - unsika_tracer_alumni_teknik_elektro.csv`
 
-Jalankan salah satu skrip berikut dengan Streamlit:
+Jalankan skrip berikut dengan Streamlit:
 ```bash
-streamlit run app.py
-# atau
 streamlit run analisis_tracer_alumni_teknik_elektro_unsika.py
 ```
 
@@ -185,7 +189,7 @@ Secara default, aplikasi akan terbuka di `http://localhost:8501`.
 6. Bagian 5: Baca rekomendasi prioritas dan ringkasan eksekutif.
 
 ### Kolom Wajib Dataset
-Skrip mengharapkan kolom berikut ada di CSV (lihat `REQUIRED_COLUMNS` dalam `app.py`):
+Skrip mengharapkan kolom berikut ada di CSV (lihat `REQUIRED_COLUMNS` dalam `analisis_tracer_alumni_teknik_elektro_unsika.py`):
 - `alumni_id`
 - `angkatan_lulus`
 - `status_saat_ini` (contoh: Bekerja, Wirausaha, Studi Lanjut, Belum Bekerja)
