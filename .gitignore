@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter/IPython
+.ipynb_checkpoints/
+
+# Cache & logs
+.pytest_cache/
+.mypy_cache/
+.cache/
+logs/
+
+# Streamlit
+.streamlit/
+
+# VSCode
+.vscode/
+
+
