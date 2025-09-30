@@ -135,83 +135,6 @@ Tips:
 - Pastikan `.gitignore` sudah benar agar file lokal (venv, cache) tidak ikut ter-push.
 - Jika diminta login, gunakan GitHub credentials atau Personal Access Token.
 
-## Dashboard Analisis Tracer Alumni Teknik Elektro UNSIKA
-
-Dashboard interaktif berbasis Streamlit untuk menganalisis data tracer study alumni Program Studi Teknik Elektro UNSIKA. Proyek ini memuat, membersihkan, menganalisis, dan memvisualisasikan data, serta menyajikan ringkasan eksekutif dan rekomendasi berbasis data.
-
-### Fitur Utama
-- **Pemuatan & Validasi Data**: Membaca CSV dan memverifikasi kolom wajib.
-- **Pembersihan Data**: Menghapus duplikat, menangani missing value pada `ttfj_bulan` dan `gaji_awal_idr`, menghapus nilai `ttfj_bulan < 0`, dan winsorization gaji pada persentil 5–95.
-- **Statistik Deskriptif**: Ringkasan responden, IPK median, distribusi status, dan deskripsi data.
-- **Metrik Kinerja**: Proporsi TTFJ ≤ 6 bulan, median TTFJ & gaji (bagi yang bekerja/wirausaha), kesesuaian bidang, serta NPS.
-- **Visualisasi**: Distribusi status, tren median gaji per angkatan, histogram TTFJ, kesesuaian bidang per sektor, gaji per level jabatan.
-- **Analisis Perbandingan**: TTFJ alumni magang vs non-magang; gaji per level jabatan.
-- **Ringkasan Eksekutif & Rekomendasi**: Kesimpulan utama dan rekomendasi prioritas.
-
-### Struktur Proyek
-```
-Dashboard Analisis Tracer Alumni Teknik Elektro Unsika/
-├─ analisis_tracer_alumni_teknik_elektro_unsika.py
-├─ Dataset - unsika_tracer_alumni_teknik_elektro.csv   # hanya lokal, gitignored
-├─ requirements.txt
-└─ README.md
-```
-
-### Dependensi
-- Python 3.9+ (direkomendasikan)
-- streamlit
-- pandas
-- numpy
-- matplotlib
-
-Instalasi paket (opsi cepat):
-```bash
-pip install streamlit pandas numpy matplotlib
-```
-
-### Menjalankan Aplikasi
-Pastikan file dataset berada di root proyek dengan nama persis:
-`Dataset - unsika_tracer_alumni_teknik_elektro.csv`
-
-Jalankan skrip berikut dengan Streamlit:
-```bash
-streamlit run analisis_tracer_alumni_teknik_elektro_unsika.py
-```
-
-Secara default, aplikasi akan terbuka di `http://localhost:8501`.
-
-### Cara Pakai (Singkat)
-1. Buka aplikasi Streamlit.
-2. Bagian 1: Tinjau kualitas data (missing value, duplikat) dan sampel data.
-3. Bagian 2: Lihat metrik ringkasan dan kinerja (TTFJ, gaji, kesesuaian, NPS).
-4. Bagian 3: Telusuri visualisasi untuk pola utama.
-5. Bagian 4: Bandingkan TTFJ magang vs non-magang, serta gaji per level jabatan.
-6. Bagian 5: Baca rekomendasi prioritas dan ringkasan eksekutif.
-
-### Kolom Wajib Dataset
-Skrip mengharapkan kolom berikut ada di CSV (lihat `REQUIRED_COLUMNS` dalam `analisis_tracer_alumni_teknik_elektro_unsika.py`):
-- `alumni_id`
-- `angkatan_lulus`
-- `status_saat_ini` (contoh: Bekerja, Wirausaha, Studi Lanjut, Belum Bekerja)
-- `ipk`
-- `magang` (0/1)
-- `sertifikasi` (0/1)
-- `projects_count`
-- `ttfj_bulan` (time-to-first-job, bulan)
-- `gaji_awal_idr`
-- `kesesuaian_bidang_1_5`
-- `relevansi_kurikulum_1_5`
-- `sektor`
-- `level_jabatan`
-- `nps_0_10`
-
-Jika salah satu kolom tidak ada, aplikasi akan menampilkan error validasi.
-
-### Penjelasan Pembersihan Data (Inti)
-- Hapus baris duplikat.
-- Hapus baris dengan missing pada `ttfj_bulan` atau `gaji_awal_idr`.
-- Filter `ttfj_bulan >= 0`.
-- Winsorization `gaji_awal_idr` untuk responden bekerja/wirausaha pada persentil 5–95 untuk mengurangi pengaruh outlier ekstrem.
 
 ### Troubleshooting (Windows/PowerShell)
 - Perintah tidak dikenali: pastikan Python & pip sudah ada di PATH. Coba: `python --version` dan `pip --version`.
@@ -223,13 +146,9 @@ Jika salah satu kolom tidak ada, aplikasi akan menampilkan error validasi.
   pip install -U pip
   pip install streamlit pandas numpy matplotlib
   ```
-- Port 8501 sudah terpakai: jalankan dengan port lain, contoh `streamlit run app.py --server.port 8502`.
+- Port 8501 sudah terpakai: jalankan dengan port lain, contoh `streamlit run analisis_tracer_alumni_teknik_elektro_unsika.py --server.port 8502`.
 - Perubahan kode tidak terlihat: bersihkan cache `streamlit cache clear` lalu jalankan ulang.
 
-### Lisensi
-Proyek ini untuk tujuan pembelajaran/akademik. Sesuaikan lisensi sesuai kebutuhan institusi Anda.
 
-### Kredit
-Disusun untuk analisis tracer study alumni Teknik Elektro UNSIKA.
 
 
