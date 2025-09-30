@@ -336,9 +336,37 @@ class DashboardApp:
         st.title("Proyek UTS: Analisis Data Tracer Study Alumni Teknik Elektro UNSIKA")
         st.markdown("---")
         
+        # --- Sumber Data: Sidebar Controls ---
+        st.sidebar.header("Sumber Data")
+        data_source = st.sidebar.radio(
+            "Pilih sumber data",
+            options=["File default", "Unggah CSV", "Path manual"],
+            index=0,
+        )
+
         try:
             with st.spinner('Memuat dan memproses data...'):
-                self.df_raw = self.loader.load(self.dataset_path, REQUIRED_COLUMNS)
+                if data_source == "File default":
+                    # Gunakan path bawaan
+                    self.df_raw = self.loader.load(self.dataset_path, REQUIRED_COLUMNS)
+                elif data_source == "Unggah CSV":
+                    uploaded = st.sidebar.file_uploader("Unggah file CSV", type=["csv"])
+                    if uploaded is None:
+                        st.info("Silakan unggah file CSV pada sidebar untuk melanjutkan.")
+                        st.stop()
+                    df_uploaded = pd.read_csv(uploaded, dtype={'alumni_id': str})
+                    validate_dataset_columns(df_uploaded, REQUIRED_COLUMNS)
+                    self.df_raw = df_uploaded
+                else:  # Path manual
+                    manual_path = st.sidebar.text_input(
+                        "Masukkan path lengkap file CSV",
+                        value=self.dataset_path,
+                    )
+                    if not manual_path:
+                        st.info("Masukkan path file CSV pada sidebar untuk melanjutkan.")
+                        st.stop()
+                    self.df_raw = self.loader.load(manual_path, REQUIRED_COLUMNS)
+
                 self.df_cleaned = clean_data(self.df_raw.copy())
 
             self._display_data_quality_report()
@@ -348,9 +376,9 @@ class DashboardApp:
             self._display_recommendations()
             self._display_executive_summary()
 
-        except FileNotFoundError:
+        except FileNotFoundError as fnf:
             st.error(
-                f"File '{self.dataset_path}' tidak ditemukan. Pastikan file berada di folder yang sama dengan script ini."
+                f"File tidak ditemukan: {fnf}.\n\nCoba opsi 'Unggah CSV' atau 'Path manual' di sidebar."
             )
         except ValueError as ve:
             st.error(f"Validasi dataset gagal: {ve}")
